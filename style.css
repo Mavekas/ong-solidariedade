@@ -1,44 +1,54 @@
 /* =========================================================
-   PROJETO ONG - EXPERIÊNCIA PRÁTICA II
-   DESENVOLVIMENTO FRONT-END
-   ========================================================= */
+   ONG SOLIDARIEDADE
+   STYLE.CSS
+   Design System + Responsividade + Acessibilidade
+========================================================= */
 
 
 /* =========================================================
    1. DESIGN SYSTEM
-   ========================================================= */
+========================================================= */
 
 :root {
 
-    /* CORES PRIMÁRIAS */
+    /* CORES PRINCIPAIS */
+
     --cor-primaria-escura: #0b3d66;
     --cor-primaria: #0d5c91;
     --cor-primaria-clara: #2f9bd3;
 
-    /* CORES SECUNDÁRIAS */
     --cor-secundaria: #1f7a5a;
     --cor-secundaria-clara: #d1fae5;
 
-    /* DESTAQUE */
     --cor-destaque: #f59e0b;
     --cor-destaque-clara: #fef3c7;
 
-    /* NEUTRAS */
+
+    /* CORES NEUTRAS */
+
     --cor-neutra-900: #1f2937;
     --cor-neutra-700: #374151;
     --cor-neutra-500: #6b7280;
     --cor-neutra-300: #d1d5db;
     --cor-neutra-100: #f3f4f6;
+
     --cor-branca: #ffffff;
 
+
     /* FEEDBACK */
+
     --cor-sucesso: #15803d;
     --cor-erro: #b42318;
     --cor-alerta: #92400e;
     --cor-info: #1e40af;
 
+
     /* TIPOGRAFIA */
-    --fonte-principal: Arial, Helvetica, sans-serif;
+
+    --fonte-principal:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     --fonte-xs: 0.875rem;
     --fonte-sm: 1rem;
@@ -46,7 +56,9 @@
     --fonte-lg: 1.75rem;
     --fonte-xl: 2.5rem;
 
+
     /* ESPAÇAMENTOS */
+
     --espaco-1: 0.25rem;
     --espaco-2: 0.5rem;
     --espaco-3: 1rem;
@@ -55,38 +67,55 @@
     --espaco-6: 3rem;
     --espaco-7: 4rem;
 
+
     /* BORDAS */
+
     --raio-pequeno: 6px;
     --raio-medio: 10px;
     --raio-grande: 16px;
 
+
     /* SOMBRAS */
-    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --sombra-media: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+    --sombra-suave:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+
+    --sombra-media:
+        0 8px 24px rgba(0, 0, 0, 0.12);
+
 
     /* TRANSIÇÕES */
+
     --transicao: 0.2s ease;
 
+
     /* LARGURA */
+
     --largura-maxima: 1200px;
 }
 
 
 /* =========================================================
-   2. RESET E CONFIGURAÇÕES GERAIS
-   ========================================================= */
+   2. RESET
+========================================================= */
 
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
+    min-height: 100vh;
+
     font-family: var(--fonte-principal);
     font-size: var(--fonte-sm);
     line-height: 1.6;
@@ -95,20 +124,27 @@ body {
     background-color: var(--cor-neutra-100);
 }
 
+
 img {
     display: block;
+
     max-width: 100%;
+
     height: auto;
 }
 
+
 a {
     color: inherit;
+
     text-decoration: none;
 }
+
 
 ul {
     list-style: none;
 }
+
 
 button,
 input,
@@ -117,6 +153,7 @@ textarea {
     font: inherit;
 }
 
+
 button {
     border: 0;
 }
@@ -124,31 +161,39 @@ button {
 
 /* =========================================================
    3. TIPOGRAFIA
-   ========================================================= */
+========================================================= */
 
 h1,
 h2,
 h3,
 h4,
 h5 {
-    color: var(--cor-primaria-escura);
     line-height: 1.2;
+
+    color: var(--cor-primaria-escura);
 }
+
 
 h1 {
-    font-size: var(--fonte-xl);
     margin-bottom: var(--espaco-3);
+
+    font-size: var(--fonte-xl);
 }
+
 
 h2 {
-    font-size: var(--fonte-lg);
     margin-bottom: var(--espaco-3);
+
+    font-size: var(--fonte-lg);
 }
 
+
 h3 {
-    font-size: var(--fonte-md);
     margin-bottom: var(--espaco-2);
+
+    font-size: var(--fonte-md);
 }
+
 
 p {
     margin-bottom: var(--espaco-3);
@@ -157,23 +202,34 @@ p {
 
 /* =========================================================
    4. CONTAINER
-   ========================================================= */
+========================================================= */
 
 .container {
-    width: min(92%, var(--largura-maxima));
+    width: min(
+        92%,
+        var(--largura-maxima)
+    );
+
     margin-inline: auto;
 }
 
 
 /* =========================================================
    5. GRID DE 12 COLUNAS
-   ========================================================= */
+========================================================= */
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            12,
+            minmax(0, 1fr)
+        );
+
     gap: var(--espaco-4);
 }
+
 
 .col-12 {
     grid-column: span 12;
@@ -209,109 +265,212 @@ p {
 
 
 /* =========================================================
-   6. CABEÇALHO
-   ========================================================= */
+   6. LINK PULAR PARA O CONTEÚDO
+========================================================= */
 
-header,
-.cabecalho {
-    background-color: var(--cor-primaria-escura);
-    color: var(--cor-branca);
-    position: relative;
-    z-index: 1000;
-}
+.skip-link {
+    position: fixed;
 
-.cabecalho-container {
-    min-height: 76px;
+    top: -100px;
+    left: 1rem;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    z-index: 9999;
 
-    gap: var(--espaco-4);
-}
+    padding:
+        0.8rem
+        1rem;
 
-.logo {
-    font-size: var(--fonte-md);
+    background-color:
+        var(--cor-neutra-900);
+
+    color:
+        var(--cor-branca);
+
+    border-radius:
+        var(--raio-pequeno);
+
     font-weight: 700;
-    color: var(--cor-branca);
-}
-
-
-/* =========================================================
-   7. NAVEGAÇÃO / FLEXBOX
-   ========================================================= */
-
-.menu {
-    display: flex;
-    align-items: center;
-    gap: var(--espaco-3);
-}
-
-.menu-lista {
-    display: flex;
-    align-items: center;
-    gap: var(--espaco-2);
-}
-
-.menu a {
-    display: block;
-
-    padding: 0.7rem 1rem;
-
-    color: var(--cor-branca);
-
-    border-radius: var(--raio-pequeno);
 
     transition:
-        background-color var(--transicao),
-        color var(--transicao);
+        top
+        var(--transicao);
 }
 
-.menu a:hover {
-    background-color: var(--cor-primaria);
-}
 
-.menu a:focus-visible {
-    outline: 3px solid var(--cor-destaque);
+.skip-link:focus {
+    top: 1rem;
+
+    outline:
+        3px solid
+        var(--cor-destaque);
+
     outline-offset: 3px;
 }
 
 
 /* =========================================================
-   8. DROPDOWN
-   ========================================================= */
+   7. CABEÇALHO
+========================================================= */
+
+header,
+.cabecalho {
+    position: relative;
+
+    z-index: 1000;
+
+    background-color:
+        var(--cor-primaria-escura);
+
+    color:
+        var(--cor-branca);
+}
+
+
+.cabecalho-container {
+    min-height: 76px;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
+        var(--espaco-4);
+}
+
+
+.logo {
+    color:
+        var(--cor-branca);
+
+    font-size:
+        var(--fonte-md);
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   8. NAVEGAÇÃO
+========================================================= */
+
+.menu {
+    display: flex;
+
+    align-items: center;
+
+    gap:
+        var(--espaco-3);
+}
+
+
+.menu-lista {
+    display: flex;
+
+    align-items: center;
+
+    gap:
+        var(--espaco-2);
+}
+
+
+.menu a {
+    display: block;
+
+    padding:
+        0.7rem
+        1rem;
+
+    color:
+        var(--cor-branca);
+
+    border-radius:
+        var(--raio-pequeno);
+
+    transition:
+        background-color
+        var(--transicao),
+        color
+        var(--transicao);
+}
+
+
+.menu a:hover {
+    background-color:
+        var(--cor-primaria);
+}
+
+
+/* ROTA ATUAL */
+
+.menu a[aria-current="page"] {
+    background-color:
+        var(--cor-primaria);
+
+    color:
+        var(--cor-branca);
+
+    font-weight: 700;
+
+    text-decoration:
+        underline;
+
+    text-underline-offset:
+        4px;
+}
+
+
+/* =========================================================
+   9. DROPDOWN
+========================================================= */
 
 .dropdown {
     position: relative;
 }
 
+
 .submenu {
     display: none;
 
     position: absolute;
+
     top: 100%;
     left: 0;
 
     min-width: 210px;
 
-    padding: var(--espaco-2);
+    padding:
+        var(--espaco-2);
 
-    background-color: var(--cor-branca);
+    background-color:
+        var(--cor-branca);
 
-    border-radius: var(--raio-medio);
+    border-radius:
+        var(--raio-medio);
 
-    box-shadow: var(--sombra-media);
+    box-shadow:
+        var(--sombra-media);
 }
+
 
 .submenu a {
-    color: var(--cor-neutra-900);
+    color:
+        var(--cor-neutra-900);
 }
+
 
 .submenu a:hover,
 .submenu a:focus-visible {
-    background-color: var(--cor-neutra-100);
-    color: var(--cor-primaria);
+    background-color:
+        var(--cor-neutra-100);
+
+    color:
+        var(--cor-primaria);
 }
+
 
 .dropdown:hover .submenu,
 .dropdown:focus-within .submenu {
@@ -320,40 +479,60 @@ header,
 
 
 /* =========================================================
-   9. BOTÃO HAMBÚRGUER
-   ========================================================= */
+   10. MENU HAMBÚRGUER
+========================================================= */
 
 .menu-toggle {
     display: none;
 
-    padding: var(--espaco-2);
+    padding:
+        var(--espaco-2);
 
-    background: transparent;
-    color: var(--cor-branca);
+    background:
+        transparent;
 
-    font-size: 1.8rem;
+    color:
+        var(--cor-branca);
 
-    cursor: pointer;
+    font-size:
+        1.8rem;
 
-    border-radius: var(--raio-pequeno);
+    cursor:
+        pointer;
+
+    border-radius:
+        var(--raio-pequeno);
 }
+
 
 .menu-toggle:hover {
-    background-color: var(--cor-primaria);
-}
-
-.menu-toggle:focus-visible {
-    outline: 3px solid var(--cor-destaque);
-    outline-offset: 3px;
+    background-color:
+        var(--cor-primaria);
 }
 
 
 /* =========================================================
-   10. HERO / DESTAQUE PRINCIPAL
-   ========================================================= */
+   11. ÁREA PRINCIPAL SPA
+========================================================= */
+
+#app {
+    min-height:
+        60vh;
+}
+
+
+#app:focus {
+    outline: none;
+}
+
+
+/* =========================================================
+   12. HERO
+========================================================= */
 
 .hero {
-    padding-block: var(--espaco-7);
+    padding-block:
+        var(--espaco-7);
 
     background:
         linear-gradient(
@@ -362,331 +541,511 @@ header,
             var(--cor-primaria)
         );
 
-    color: var(--cor-branca);
+    color:
+        var(--cor-branca);
 }
+
 
 .hero h1,
 .hero h2 {
-    color: var(--cor-branca);
+    color:
+        var(--cor-branca);
 }
+
 
 .hero-conteudo {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
 
-    gap: var(--espaco-6);
+    align-items: center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        var(--espaco-6);
 }
+
 
 .hero-texto {
     flex: 1;
 }
+
 
 .hero-imagem {
     flex: 1;
 }
 
 
+.hero-imagem img {
+    width: 100%;
+
+    border-radius:
+        var(--raio-grande);
+}
+
+
 /* =========================================================
-   11. SEÇÕES
-   ========================================================= */
+   13. SEÇÕES
+========================================================= */
 
 .secao {
-    padding-block: var(--espaco-6);
+    padding-block:
+        var(--espaco-6);
 }
 
+
 .secao-titulo {
-    text-align: center;
-    margin-bottom: var(--espaco-5);
+    margin-bottom:
+        var(--espaco-5);
+
+    text-align:
+        center;
 }
 
 
 /* =========================================================
-   12. CARDS
-   ========================================================= */
+   14. CARDS
+========================================================= */
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: var(--espaco-4);
+
+    grid-template-columns:
+        repeat(
+            12,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        var(--espaco-4);
 }
+
 
 .card {
-    grid-column: span 4;
+    grid-column:
+        span 4;
 
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
-    gap: var(--espaco-3);
+    flex-direction:
+        column;
 
-    background-color: var(--cor-branca);
+    justify-content:
+        space-between;
 
-    border: 1px solid var(--cor-neutra-300);
+    gap:
+        var(--espaco-3);
 
-    border-radius: var(--raio-grande);
+    background-color:
+        var(--cor-branca);
 
-    overflow: hidden;
+    border:
+        1px solid
+        var(--cor-neutra-300);
 
-    box-shadow: var(--sombra-suave);
+    border-radius:
+        var(--raio-grande);
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        var(--sombra-suave);
 
     transition:
-        transform var(--transicao),
-        box-shadow var(--transicao);
+        transform
+        var(--transicao),
+        box-shadow
+        var(--transicao);
 }
 
+
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--sombra-media);
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        var(--sombra-media);
 }
+
 
 .card-imagem {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
+
+    aspect-ratio:
+        16 / 9;
+
+    object-fit:
+        cover;
 }
+
 
 .card-conteudo {
     display: flex;
-    flex-direction: column;
-
-    gap: var(--espaco-2);
-
-    padding: var(--espaco-4);
 
     flex: 1;
+
+    flex-direction:
+        column;
+
+    gap:
+        var(--espaco-2);
+
+    padding:
+        var(--espaco-4);
 }
+
 
 .card-acoes {
     display: flex;
-    align-items: center;
 
-    gap: var(--espaco-2);
+    align-items:
+        center;
 
-    flex-wrap: wrap;
+    gap:
+        var(--espaco-2);
 
-    margin-top: auto;
+    flex-wrap:
+        wrap;
+
+    margin-top:
+        auto;
 }
 
 
 /* =========================================================
-   13. BOTÕES
-   ========================================================= */
+   15. BOTÕES
+========================================================= */
 
 .btn {
     display: inline-flex;
 
     align-items: center;
-    justify-content: center;
 
-    gap: var(--espaco-2);
+    justify-content:
+        center;
 
-    padding: 0.75rem 1.25rem;
+    gap:
+        var(--espaco-2);
 
-    background-color: var(--cor-primaria);
-    color: var(--cor-branca);
+    padding:
+        0.75rem
+        1.25rem;
 
-    border: 2px solid transparent;
+    background-color:
+        var(--cor-primaria);
 
-    border-radius: var(--raio-medio);
+    color:
+        var(--cor-branca);
+
+    border:
+        2px solid
+        transparent;
+
+    border-radius:
+        var(--raio-medio);
 
     font-weight: 700;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
     transition:
-        background-color var(--transicao),
-        color var(--transicao),
-        border-color var(--transicao),
-        transform var(--transicao),
-        opacity var(--transicao);
+        background-color
+        var(--transicao),
+        color
+        var(--transicao),
+        border-color
+        var(--transicao),
+        transform
+        var(--transicao),
+        opacity
+        var(--transicao);
 }
+
 
 .btn:hover {
-    background-color: var(--cor-primaria-escura);
-    transform: translateY(-2px);
+    background-color:
+        var(--cor-primaria-escura);
+
+    transform:
+        translateY(-2px);
 }
 
-.btn:focus-visible {
-    outline: 3px solid var(--cor-destaque);
-    outline-offset: 3px;
-}
 
 .btn:active {
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
+
 
 .btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
+    opacity:
+        0.5;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
 }
+
 
 .btn-secundario {
-    background-color: var(--cor-secundaria);
+    background-color:
+        var(--cor-secundaria);
 }
+
 
 .btn-secundario:hover {
-    background-color: #145b42;
+    background-color:
+        #145b42;
 }
+
 
 .btn-destaque {
-    background-color: var(--cor-destaque);
-    color: var(--cor-neutra-900);
+    background-color:
+        var(--cor-destaque);
+
+    color:
+        var(--cor-neutra-900);
 }
 
+
 .btn-destaque:hover {
-    background-color: #d97706;
+    background-color:
+        #d97706;
 }
 
 
 /* =========================================================
-   14. BADGES
-   ========================================================= */
+   16. BADGES
+========================================================= */
 
 .badge {
     display: inline-flex;
 
     align-items: center;
-    justify-content: center;
 
-    width: fit-content;
+    justify-content:
+        center;
 
-    padding: 0.35rem 0.75rem;
+    width:
+        fit-content;
 
-    border-radius: 999px;
+    padding:
+        0.35rem
+        0.75rem;
 
-    font-size: var(--fonte-xs);
+    border-radius:
+        999px;
+
+    font-size:
+        var(--fonte-xs);
+
     font-weight: 700;
 }
 
+
 .badge-sucesso {
-    background-color: #d1fae5;
-    color: #065f46;
+    background-color:
+        #d1fae5;
+
+    color:
+        #065f46;
 }
+
 
 .badge-alerta {
-    background-color: #fef3c7;
-    color: #92400e;
+    background-color:
+        #fef3c7;
+
+    color:
+        #92400e;
 }
+
 
 .badge-info {
-    background-color: #dbeafe;
-    color: #1e40af;
+    background-color:
+        #dbeafe;
+
+    color:
+        #1e40af;
 }
 
+
 .badge-erro {
-    background-color: #fee2e2;
-    color: #991b1b;
+    background-color:
+        #fee2e2;
+
+    color:
+        #991b1b;
 }
 
 
 /* =========================================================
-   15. FORMULÁRIOS
-   ========================================================= */
+   17. FORMULÁRIO
+========================================================= */
 
 .formulario {
-    max-width: 800px;
+    max-width:
+        800px;
 
-    margin-inline: auto;
+    margin-inline:
+        auto;
 
-    padding: var(--espaco-5);
+    padding:
+        var(--espaco-5);
 
-    background-color: var(--cor-branca);
+    background-color:
+        var(--cor-branca);
 
-    border-radius: var(--raio-grande);
+    border-radius:
+        var(--raio-grande);
 
-    box-shadow: var(--sombra-suave);
+    box-shadow:
+        var(--sombra-suave);
 }
+
 
 .form-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
 
-    gap: var(--espaco-4);
+    gap:
+        var(--espaco-4);
 }
+
 
 .campo {
     display: flex;
-    flex-direction: column;
 
-    gap: var(--espaco-2);
+    flex-direction:
+        column;
+
+    gap:
+        var(--espaco-2);
 }
+
 
 .campo-completo {
-    grid-column: 1 / -1;
+    grid-column:
+        1 / -1;
 }
 
+
 label {
+    color:
+        var(--cor-neutra-700);
+
     font-weight: 700;
-    color: var(--cor-neutra-700);
 }
+
 
 input,
 select,
 textarea {
     width: 100%;
 
-    padding: 0.8rem 1rem;
+    padding:
+        0.8rem
+        1rem;
 
-    color: var(--cor-neutra-900);
-    background-color: var(--cor-branca);
+    color:
+        var(--cor-neutra-900);
 
-    border: 2px solid var(--cor-neutra-300);
+    background-color:
+        var(--cor-branca);
 
-    border-radius: var(--raio-pequeno);
+    border:
+        2px solid
+        var(--cor-neutra-300);
+
+    border-radius:
+        var(--raio-pequeno);
 
     transition:
-        border-color var(--transicao),
-        box-shadow var(--transicao),
-        background-color var(--transicao);
+        border-color
+        var(--transicao),
+        box-shadow
+        var(--transicao),
+        background-color
+        var(--transicao);
 }
 
+
 textarea {
-    min-height: 140px;
-    resize: vertical;
+    min-height:
+        140px;
+
+    resize:
+        vertical;
 }
+
 
 input:hover,
 select:hover,
 textarea:hover {
-    border-color: var(--cor-neutra-500);
+    border-color:
+        var(--cor-neutra-500);
 }
+
 
 input:focus,
 select:focus,
 textarea:focus {
-    outline: none;
+    border-color:
+        var(--cor-primaria);
 
-    border-color: var(--cor-primaria);
+    outline:
+        none;
 
     box-shadow:
-        0 0 0 3px rgba(13, 92, 145, 0.15);
+        0 0 0 3px
+        rgba(
+            13,
+            92,
+            145,
+            0.15
+        );
 }
 
 
 /* =========================================================
-   VALIDAÇÃO VISUAL DOS FORMULÁRIOS
-   ========================================================= */
+   18. VALIDAÇÃO
+========================================================= */
 
 .campo-valido {
-    border-color: var(--cor-sucesso);
+    border-color:
+        var(--cor-sucesso);
 }
+
 
 .campo-invalido {
-    border-color: var(--cor-erro);
+    border-color:
+        var(--cor-erro);
 }
+
 
 .campo-invalido:focus {
-    border-color: var(--cor-erro);
+    border-color:
+        var(--cor-erro);
 
     box-shadow:
-        0 0 0 3px rgba(180, 35, 24, 0.15);
+        0 0 0 3px
+        rgba(
+            180,
+            35,
+            24,
+            0.15
+        );
 }
 
-
-/* Depois da tentativa de envio */
 
 .formulario.tentou-enviar
 input:invalid,
@@ -696,7 +1055,8 @@ select:invalid,
 
 .formulario.tentou-enviar
 textarea:invalid {
-    border-color: var(--cor-erro);
+    border-color:
+        var(--cor-erro);
 }
 
 
@@ -708,278 +1068,444 @@ select:valid,
 
 .formulario.tentou-enviar
 textarea:valid {
-    border-color: var(--cor-sucesso);
+    border-color:
+        var(--cor-sucesso);
 }
 
 
 /* =========================================================
-   CORES DO TOAST
-   ========================================================= */
-
-.toast-sucesso {
-    background-color: #166534;
-}
-
-.toast-erro {
-    background-color: #991b1b;
-}
-
-/* =========================================================
-   16. BOTÕES DO FORMULÁRIO / FLEXBOX
-   ========================================================= */
+   19. AÇÕES DO FORMULÁRIO
+========================================================= */
 
 .form-acoes {
-    grid-column: 1 / -1;
+    grid-column:
+        1 / -1;
 
     display: flex;
 
-    justify-content: flex-end;
-    align-items: center;
+    justify-content:
+        flex-end;
 
-    gap: var(--espaco-2);
+    align-items:
+        center;
 
-    flex-wrap: wrap;
+    gap:
+        var(--espaco-2);
 
-    margin-top: var(--espaco-3);
+    flex-wrap:
+        wrap;
+
+    margin-top:
+        var(--espaco-3);
 }
 
 
 /* =========================================================
-   17. ALERTAS
-   ========================================================= */
+   20. ALERTAS
+========================================================= */
 
 .alerta {
-    padding: var(--espaco-3);
+    margin-block:
+        var(--espaco-3);
 
-    margin-block: var(--espaco-3);
+    padding:
+        var(--espaco-3);
 
-    border-left: 5px solid;
+    border-left:
+        5px solid;
 
-    border-radius: var(--raio-medio);
+    border-radius:
+        var(--raio-medio);
 }
+
 
 .alerta-sucesso {
-    background-color: #ecfdf5;
-    border-color: var(--cor-sucesso);
-    color: #166534;
+    background-color:
+        #ecfdf5;
+
+    border-color:
+        var(--cor-sucesso);
+
+    color:
+        #166534;
 }
+
 
 .alerta-erro {
-    background-color: #fef2f2;
-    border-color: var(--cor-erro);
-    color: #991b1b;
+    background-color:
+        #fef2f2;
+
+    border-color:
+        var(--cor-erro);
+
+    color:
+        #991b1b;
 }
+
 
 .alerta-info {
-    background-color: #eff6ff;
-    border-color: var(--cor-info);
-    color: #1e40af;
+    background-color:
+        #eff6ff;
+
+    border-color:
+        var(--cor-info);
+
+    color:
+        #1e40af;
 }
+
 
 .alerta-aviso {
-    background-color: #fffbeb;
-    border-color: var(--cor-destaque);
-    color: var(--cor-alerta);
+    background-color:
+        #fffbeb;
+
+    border-color:
+        var(--cor-destaque);
+
+    color:
+        var(--cor-alerta);
 }
 
 
 /* =========================================================
-   18. TOAST
-   ========================================================= */
+   21. TOAST
+========================================================= */
 
 .toast {
-    position: fixed;
+    position:
+        fixed;
 
-    right: var(--espaco-4);
-    bottom: var(--espaco-4);
+    right:
+        var(--espaco-4);
 
-    z-index: 3000;
+    bottom:
+        var(--espaco-4);
 
-    max-width: 350px;
+    z-index:
+        3000;
 
-    padding: var(--espaco-3) var(--espaco-4);
+    max-width:
+        350px;
 
-    background-color: var(--cor-neutra-900);
-    color: var(--cor-branca);
+    padding:
+        var(--espaco-3)
+        var(--espaco-4);
 
-    border-radius: var(--raio-medio);
+    background-color:
+        var(--cor-neutra-900);
 
-    box-shadow: var(--sombra-media);
+    color:
+        var(--cor-branca);
 
-    opacity: 0;
+    border-radius:
+        var(--raio-medio);
 
-    visibility: hidden;
+    box-shadow:
+        var(--sombra-media);
 
-    transform: translateY(20px);
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    transform:
+        translateY(20px);
 
     transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease,
-        transform 0.3s ease;
+        opacity
+        0.3s ease,
+        visibility
+        0.3s ease,
+        transform
+        0.3s ease;
 }
+
 
 .toast.ativo {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+    transform:
+        translateY(0);
+}
+
+
+.toast-sucesso {
+    background-color:
+        #166534;
+}
+
+
+.toast-erro {
+    background-color:
+        #991b1b;
 }
 
 
 /* =========================================================
-   19. MODAL
-   ========================================================= */
+   22. MODAL
+========================================================= */
 
 .modal {
-    position: fixed;
+    position:
+        fixed;
 
-    inset: 0;
+    inset:
+        0;
 
-    z-index: 2000;
+    z-index:
+        2000;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:
+        center;
 
-    padding: var(--espaco-3);
+    justify-content:
+        center;
 
-    background-color: rgba(0, 0, 0, 0.6);
+    padding:
+        var(--espaco-3);
 
-    opacity: 0;
+    background-color:
+        rgba(0, 0, 0, 0.65);
 
-    visibility: hidden;
+    opacity:
+        0;
+
+    visibility:
+        hidden;
 
     transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
+        opacity
+        0.3s ease,
+        visibility
+        0.3s ease;
 }
+
 
 .modal.ativo {
-    opacity: 1;
-    visibility: visible;
+    opacity:
+        1;
+
+    visibility:
+        visible;
 }
+
 
 .modal-conteudo {
-    position: relative;
+    position:
+        relative;
 
-    width: min(100%, 550px);
+    width:
+        min(100%, 550px);
 
-    padding: var(--espaco-5);
+    padding:
+        var(--espaco-5);
 
-    background-color: var(--cor-branca);
+    background-color:
+        var(--cor-branca);
 
-    border-radius: var(--raio-grande);
+    border-radius:
+        var(--raio-grande);
 
-    box-shadow: var(--sombra-media);
+    box-shadow:
+        var(--sombra-media);
 
-    transform: translateY(-20px);
+    transform:
+        translateY(-20px);
 
-    transition: transform 0.3s ease;
+    transition:
+        transform
+        0.3s ease;
 }
 
-.modal.ativo .modal-conteudo {
-    transform: translateY(0);
+
+.modal.ativo
+.modal-conteudo {
+    transform:
+        translateY(0);
 }
+
 
 .modal-fechar {
-    position: absolute;
+    position:
+        absolute;
 
-    top: var(--espaco-3);
-    right: var(--espaco-3);
+    top:
+        var(--espaco-3);
 
-    width: 40px;
-    height: 40px;
+    right:
+        var(--espaco-3);
 
-    display: flex;
+    width:
+        40px;
 
-    align-items: center;
-    justify-content: center;
+    height:
+        40px;
 
-    background: transparent;
+    display:
+        flex;
 
-    border-radius: 50%;
+    align-items:
+        center;
 
-    font-size: 1.5rem;
+    justify-content:
+        center;
 
-    cursor: pointer;
+    background:
+        transparent;
+
+    border-radius:
+        50%;
+
+    font-size:
+        1.5rem;
+
+    cursor:
+        pointer;
 }
+
 
 .modal-fechar:hover {
-    background-color: var(--cor-neutra-100);
-}
-
-.modal-fechar:focus-visible {
-    outline: 3px solid var(--cor-destaque);
+    background-color:
+        var(--cor-neutra-100);
 }
 
 
 /* =========================================================
-   20. RODAPÉ
-   ========================================================= */
+   23. RODAPÉ
+========================================================= */
 
 footer,
 .rodape {
-    margin-top: var(--espaco-6);
+    margin-top:
+        var(--espaco-6);
 
-    padding-block: var(--espaco-5);
+    padding-block:
+        var(--espaco-5);
 
-    background-color: var(--cor-primaria-escura);
-    color: var(--cor-branca);
+    background-color:
+        var(--cor-primaria-escura);
+
+    color:
+        var(--cor-branca);
 }
+
 
 .rodape-conteudo {
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: space-between;
+    align-items:
+        center;
 
-    gap: var(--espaco-4);
+    justify-content:
+        space-between;
 
-    flex-wrap: wrap;
+    gap:
+        var(--espaco-4);
+
+    flex-wrap:
+        wrap;
+}
+
+
+.rodape a {
+    text-decoration:
+        underline;
+
+    text-underline-offset:
+        3px;
 }
 
 
 /* =========================================================
-   21. ACESSIBILIDADE
-   ========================================================= */
+   24. FOCO VISÍVEL - ACESSIBILIDADE
+========================================================= */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline:
+        3px solid
+        var(--cor-destaque);
+
+    outline-offset:
+        3px;
+}
+
+
+/* =========================================================
+   25. ELEMENTO SOMENTE PARA LEITORES DE TELA
+========================================================= */
 
 .sr-only {
-    position: absolute;
+    position:
+        absolute;
 
-    width: 1px;
-    height: 1px;
+    width:
+        1px;
 
-    padding: 0;
-    margin: -1px;
+    height:
+        1px;
 
-    overflow: hidden;
+    padding:
+        0;
 
-    clip: rect(0, 0, 0, 0);
+    margin:
+        -1px;
 
-    white-space: nowrap;
+    overflow:
+        hidden;
 
-    border: 0;
+    clip:
+        rect(
+            0,
+            0,
+            0,
+            0
+        );
+
+    white-space:
+        nowrap;
+
+    border:
+        0;
 }
 
 
 /* =========================================================
-   22. BREAKPOINT 1
+   26. BREAKPOINT 1
    CELULAR PEQUENO - ATÉ 480px
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 480px) {
 
     h1 {
-        font-size: 2rem;
+        font-size:
+            2rem;
     }
+
 
     h2 {
-        font-size: 1.5rem;
+        font-size:
+            1.5rem;
     }
 
+
     .grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
+
 
     .col-12,
     .col-10,
@@ -989,111 +1515,172 @@ footer,
     .col-4,
     .col-3,
     .col-2 {
-        grid-column: 1;
+        grid-column:
+            1;
     }
+
 
     .menu-toggle {
-        display: block;
+        display:
+            block;
     }
+
 
     .menu {
-        display: none;
+        display:
+            none;
 
-        position: absolute;
+        position:
+            absolute;
 
-        top: 100%;
-        left: 0;
-        right: 0;
+        top:
+            100%;
 
-        padding: var(--espaco-3);
+        left:
+            0;
 
-        background-color: var(--cor-primaria-escura);
+        right:
+            0;
 
-        flex-direction: column;
-        align-items: stretch;
+        padding:
+            var(--espaco-3);
+
+        background-color:
+            var(--cor-primaria-escura);
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
     }
+
 
     .menu.ativo {
-        display: flex;
+        display:
+            flex;
     }
 
+
     .menu-lista {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
     }
+
 
     .menu a {
-        width: 100%;
+        width:
+            100%;
     }
+
 
     .submenu {
-        position: static;
+        position:
+            static;
 
-        width: 100%;
+        width:
+            100%;
 
-        margin-top: var(--espaco-1);
+        margin-top:
+            var(--espaco-1);
 
-        box-shadow: none;
+        box-shadow:
+            none;
     }
+
 
     .hero {
-        padding-block: var(--espaco-5);
+        padding-block:
+            var(--espaco-5);
     }
+
 
     .hero-conteudo {
-        flex-direction: column;
+        flex-direction:
+            column;
     }
+
 
     .cards-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
+
 
     .card {
-        grid-column: 1;
+        grid-column:
+            1;
     }
+
 
     .formulario {
-        padding: var(--espaco-3);
+        padding:
+            var(--espaco-3);
     }
 
+
     .form-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
+
 
     .campo,
     .campo-completo {
-        grid-column: 1;
+        grid-column:
+            1;
     }
+
 
     .form-acoes {
-        flex-direction: column;
+        flex-direction:
+            column;
     }
+
 
     .form-acoes .btn {
-        width: 100%;
+        width:
+            100%;
     }
+
 
     .toast {
-        left: var(--espaco-2);
-        right: var(--espaco-2);
-        bottom: var(--espaco-2);
+        left:
+            var(--espaco-2);
 
-        max-width: none;
+        right:
+            var(--espaco-2);
+
+        bottom:
+            var(--espaco-2);
+
+        max-width:
+            none;
     }
 
+
     .rodape-conteudo {
-        flex-direction: column;
-        text-align: center;
+        flex-direction:
+            column;
+
+        text-align:
+            center;
     }
 }
 
 
 /* =========================================================
-   23. BREAKPOINT 2
+   27. BREAKPOINT 2
    CELULAR GRANDE - 481px ATÉ 767px
-   ========================================================= */
+========================================================= */
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media
+(min-width: 481px)
+and
+(max-width: 767px) {
 
     .col-12,
     .col-10,
@@ -1103,131 +1690,225 @@ footer,
     .col-4,
     .col-3,
     .col-2 {
-        grid-column: span 12;
+        grid-column:
+            span 12;
     }
+
 
     .menu-toggle {
-        display: block;
+        display:
+            block;
     }
+
 
     .menu {
-        display: none;
+        display:
+            none;
 
-        position: absolute;
+        position:
+            absolute;
 
-        top: 100%;
-        left: 0;
-        right: 0;
+        top:
+            100%;
 
-        padding: var(--espaco-3);
+        left:
+            0;
 
-        background-color: var(--cor-primaria-escura);
+        right:
+            0;
 
-        flex-direction: column;
-        align-items: stretch;
+        padding:
+            var(--espaco-3);
+
+        background-color:
+            var(--cor-primaria-escura);
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
     }
+
 
     .menu.ativo {
-        display: flex;
+        display:
+            flex;
     }
+
 
     .menu-lista {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
     }
+
 
     .submenu {
-        position: static;
-        box-shadow: none;
+        position:
+            static;
+
+        box-shadow:
+            none;
     }
+
 
     .hero-conteudo {
-        flex-direction: column;
+        flex-direction:
+            column;
     }
+
 
     .card {
-        grid-column: span 12;
+        grid-column:
+            span 12;
     }
 
+
     .form-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
+
 
     .campo,
     .campo-completo {
-        grid-column: 1;
+        grid-column:
+            1;
     }
 }
 
 
 /* =========================================================
-   24. BREAKPOINT 3
+   28. BREAKPOINT 3
    TABLET - 768px ATÉ 991px
-   ========================================================= */
+========================================================= */
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media
+(min-width: 768px)
+and
+(max-width: 991px) {
 
     .col-4,
     .col-3 {
-        grid-column: span 6;
+        grid-column:
+            span 6;
     }
+
 
     .hero-conteudo {
-        gap: var(--espaco-4);
+        gap:
+            var(--espaco-4);
     }
 
+
     .card {
-        grid-column: span 6;
+        grid-column:
+            span 6;
     }
+
 
     .formulario {
-        max-width: 720px;
+        max-width:
+            720px;
     }
 }
 
 
 /* =========================================================
-   25. BREAKPOINT 4
-   NOTEBOOK / DESKTOP MENOR - 992px ATÉ 1199px
-   ========================================================= */
+   29. BREAKPOINT 4
+   NOTEBOOK - 992px ATÉ 1199px
+========================================================= */
 
-@media (min-width: 992px) and (max-width: 1199px) {
+@media
+(min-width: 992px)
+and
+(max-width: 1199px) {
 
     .container {
-        width: 94%;
+        width:
+            94%;
     }
+
 
     .col-4 {
-        grid-column: span 4;
+        grid-column:
+            span 4;
     }
+
 
     .col-3 {
-        grid-column: span 3;
+        grid-column:
+            span 3;
     }
 
+
     .card {
-        grid-column: span 4;
+        grid-column:
+            span 4;
     }
 }
 
 
 /* =========================================================
-   26. BREAKPOINT 5
-   DESKTOP AMPLO - A PARTIR DE 1200px
-   ========================================================= */
+   30. BREAKPOINT 5
+   DESKTOP AMPLO - 1200px OU MAIS
+========================================================= */
 
-@media (min-width: 1200px) {
+@media
+(min-width: 1200px) {
 
     .container {
-        max-width: var(--largura-maxima);
+        max-width:
+            var(--largura-maxima);
     }
+
 
     .grid {
-        max-width: var(--largura-maxima);
-        margin-inline: auto;
+        max-width:
+            var(--largura-maxima);
+
+        margin-inline:
+            auto;
     }
 
+
     .card {
-        grid-column: span 4;
+        grid-column:
+            span 4;
+    }
+}
+
+
+/* =========================================================
+   31. PREFERS REDUCED MOTION
+   ACESSIBILIDADE WCAG
+========================================================= */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior:
+            auto;
+    }
+
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        scroll-behavior:
+            auto !important;
     }
 }
