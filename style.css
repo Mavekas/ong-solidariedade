@@ -1912,3 +1912,79 @@ and
             auto !important;
     }
 }
+/* =========================================================
+   MODO ESCURO - ACESSIBILIDADE
+========================================================= */
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background-color: #111827;
+        color: #f3f4f6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        color: #ffffff;
+    }
+
+    .secao {
+        background-color: #111827;
+    }
+
+    .card,
+    .formulario,
+    .modal-conteudo {
+        background-color: #1f2937;
+        color: #f3f4f6;
+        border-color: #4b5563;
+    }
+
+    label {
+        color: #f3f4f6;
+    }
+
+    input,
+    select,
+    textarea {
+        background-color: #111827;
+        color: #ffffff;
+        border-color: #9ca3af;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #d1d5db;
+    }
+
+    .submenu {
+        background-color: #1f2937;
+    }
+
+    .submenu a {
+        color: #ffffff;
+    }
+
+    .alerta-info {
+        background-color: #172554;
+        color: #dbeafe;
+    }
+
+    .alerta-sucesso {
+        background-color: #052e16;
+        color: #d1fae5;
+    }
+
+    .alerta-aviso {
+        background-color: #451a03;
+        color: #fef3c7;
+    }
+
+    .alerta-erro {
+        background-color: #450a0a;
+        color: #fee2e2;
+    }
+}
