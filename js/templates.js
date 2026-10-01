@@ -65,46 +65,44 @@ const projetos = [
 export function templateInicio() {
     return `
         <section class="hero">
-            <div class="container hero-conteudo">
-                <div class="grid">
+    <div class="container hero-conteudo">
 
-                    <div class="col-7 hero-texto">
-                        <span class="badge badge-info">
-                            Solidariedade que transforma
-                        </span>
+        <div class="hero-texto">
+            <span class="badge badge-info">
+                Solidariedade que transforma
+            </span>
 
-                        <h1>Juntos por um futuro melhor</h1>
+            <h1>Juntos por um futuro melhor</h1>
 
-                        <p>
-                            A ONG Solidariedade conecta pessoas dispostas a
-                            ajudar com projetos que fazem a diferença na vida
-                            de famílias e comunidades.
-                        </p>
+            <p>
+                A ONG Solidariedade conecta pessoas dispostas a
+                ajudar com projetos que fazem a diferença na vida
+                de famílias e comunidades.
+            </p>
 
-                        <div class="acoes">
-                            <a href="#projetos"
-                               class="btn btn-primario">
-                                Conhecer projetos
-                            </a>
+            <div class="acoes">
+                <a href="#projetos"
+                   class="btn btn-primario">
+                    Conhecer projetos
+                </a>
 
-                            <a href="#cadastro"
-                               class="btn btn-secundario">
-                                Quero participar
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-5 hero-imagem">
-                        <img
-                            src="${imagemPrincipal}"
-                            alt="Pessoas participando de uma ação solidária"
-                            loading="eager"
-                        >
-                    </div>
-
-                </div>
+                <a href="#cadastro"
+                   class="btn btn-secundario">
+                    Quero participar
+                </a>
             </div>
-        </section>
+        </div>
+
+        <div class="hero-imagem">
+            <img
+                src="${imagemPrincipal}"
+                alt="Pessoas participando de uma ação solidária"
+                loading="eager"
+            >
+        </div>
+
+    </div>
+</section>
 
 
         <section class="secao" aria-labelledby="titulo-sobre">
@@ -155,7 +153,7 @@ export function templateInicio() {
 
             <div class="container">
 
-                <header class="secao-cabecalho">
+                <header class="secao-titulo">
                     <span class="badge badge-sucesso">
                         Faça parte
                     </span>
@@ -321,7 +319,7 @@ export function templateProjetos() {
 
             <div class="container">
 
-                <header class="secao-cabecalho">
+                <header class="secao-titulo">
 
                     <h2 id="titulo-projetos">
                         Projetos em destaque
@@ -428,7 +426,7 @@ export function templateCadastro() {
 
             <div class="container">
 
-                <header class="secao-cabecalho">
+                <header class="secao-titulo">
 
                     <h2 id="titulo-cadastro">
                         Cadastro
@@ -666,7 +664,7 @@ export function templateCadastro() {
                     </div>
 
 
-                    <div class="acoes-formulario">
+                    <div class="form-acoes">
 
                         <button
                             type="reset"
