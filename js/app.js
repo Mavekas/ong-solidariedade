@@ -2,7 +2,15 @@ import { renderizarRota } from "./routes.js";
 
 
 /* =========================================================
-   INICIALIZAÇÃO
+   VARIÁVEIS GERAIS
+========================================================= */
+
+let temporizadorToast;
+let elementoFocadoAntesDoModal = null;
+
+
+/* =========================================================
+   1. INICIALIZAÇÃO DA APLICAÇÃO
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================================================
-   NAVEGAÇÃO SPA
+   2. NAVEGAÇÃO DA SPA
 ========================================================= */
 
 window.addEventListener("hashchange", () => {
@@ -45,7 +53,7 @@ window.addEventListener("hashchange", () => {
 
 
 /* =========================================================
-   MENU MOBILE
+   3. MENU HAMBÚRGUER
 ========================================================= */
 
 function iniciarMenu() {
@@ -68,7 +76,7 @@ function iniciarMenu() {
 
         botaoMenu.setAttribute(
             "aria-expanded",
-            aberto
+            String(aberto)
         );
 
         botaoMenu.setAttribute(
@@ -121,16 +129,19 @@ function fecharMenuMobile() {
     );
 
     botaoMenu.textContent = "☰";
+
 }
 
 
 /* =========================================================
-   APÓS RENDERIZAR UMA ROTA
+   4. APÓS RENDERIZAR UMA ROTA
 ========================================================= */
 
 document.addEventListener(
     "rotaRenderizada",
     () => {
+
+        atualizarRotaAtual();
 
         prepararFormulario();
 
@@ -146,7 +157,48 @@ document.addEventListener(
 
 
 /* =========================================================
-   DELEGAÇÃO DE EVENTOS
+   5. INDICAR ROTA ATUAL
+   aria-current="page"
+========================================================= */
+
+function atualizarRotaAtual() {
+
+    const rotaAtual =
+        window.location.hash || "#inicio";
+
+    const links =
+        document.querySelectorAll(
+            "[data-rota]"
+        );
+
+
+    links.forEach((link) => {
+
+        const rotaDoLink =
+            `#${link.dataset.rota}`;
+
+        if (rotaDoLink === rotaAtual) {
+
+            link.setAttribute(
+                "aria-current",
+                "page"
+            );
+
+        } else {
+
+            link.removeAttribute(
+                "aria-current"
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   6. DELEGAÇÃO DE EVENTOS
 ========================================================= */
 
 document.addEventListener("click", (evento) => {
@@ -155,25 +207,17 @@ document.addEventListener("click", (evento) => {
         evento.target.closest(".modal-fechar") ||
         evento.target.closest(".modal-ok")
     ) {
+
         fecharModal();
+
     }
 
 
     if (
         evento.target.id === "modal-sucesso"
     ) {
-        fecharModal();
-    }
-
-});
-
-
-document.addEventListener("keydown", (evento) => {
-
-    if (evento.key === "Escape") {
 
         fecharModal();
-        fecharMenuMobile();
 
     }
 
@@ -181,7 +225,55 @@ document.addEventListener("keydown", (evento) => {
 
 
 /* =========================================================
-   FORMULÁRIO
+   7. EVENTOS DE TECLADO
+========================================================= */
+
+document.addEventListener("keydown", (evento) => {
+
+    const modal =
+        document.querySelector("#modal-sucesso");
+
+
+    /* FECHAR COM ESC */
+
+    if (evento.key === "Escape") {
+
+        if (
+            modal &&
+            modal.classList.contains("ativo")
+        ) {
+
+            fecharModal();
+
+        } else {
+
+            fecharMenuMobile();
+
+        }
+
+    }
+
+
+    /* MANTER O FOCO DENTRO DO MODAL */
+
+    if (
+        evento.key === "Tab" &&
+        modal &&
+        modal.classList.contains("ativo")
+    ) {
+
+        prenderFocoNoModal(
+            evento,
+            modal
+        );
+
+    }
+
+});
+
+
+/* =========================================================
+   8. PREPARAR FORMULÁRIO
 ========================================================= */
 
 function prepararFormulario() {
@@ -203,6 +295,9 @@ function prepararFormulario() {
     const cep =
         formulario.querySelector("#cep");
 
+    const estado =
+        formulario.querySelector("#estado");
+
     const contribuicao =
         formulario.querySelector("#contribuicao");
 
@@ -210,51 +305,96 @@ function prepararFormulario() {
         formulario.querySelector("#mensagem");
 
 
+    /* RESTAURAR PREFERÊNCIAS */
+
     restaurarPreferencias(
         contribuicao,
         mensagem
     );
 
 
+    /* MÁSCARA CPF */
+
     if (cpf) {
+
         cpf.addEventListener(
             "input",
             aplicarMascaraCPF
         );
+
     }
 
 
+    /* MÁSCARA TELEFONE */
+
     if (telefone) {
+
         telefone.addEventListener(
             "input",
             aplicarMascaraTelefone
         );
+
     }
 
 
+    /* MÁSCARA CEP */
+
     if (cep) {
+
         cep.addEventListener(
             "input",
             aplicarMascaraCEP
         );
+
     }
 
 
+    /* ESTADO EM MAIÚSCULO */
+
+    if (estado) {
+
+        estado.addEventListener(
+            "input",
+            () => {
+
+                estado.value =
+                    estado.value
+                        .replace(
+                            /[^a-zA-Z]/g,
+                            ""
+                        )
+                        .toUpperCase()
+                        .substring(0, 2);
+
+            }
+        );
+
+    }
+
+
+    /* LOCALSTORAGE */
+
     if (contribuicao) {
+
         contribuicao.addEventListener(
             "change",
             salvarPreferencias
         );
+
     }
 
 
     if (mensagem) {
+
         mensagem.addEventListener(
             "input",
             salvarPreferencias
         );
+
     }
 
+
+    /* VALIDAÇÃO */
 
     const campos =
         formulario.querySelectorAll(
@@ -279,7 +419,9 @@ function prepararFormulario() {
                         "campo-invalido"
                     )
                 ) {
+
                     validarCampo(campo);
+
                 }
 
             }
@@ -288,11 +430,15 @@ function prepararFormulario() {
     });
 
 
+    /* ENVIO */
+
     formulario.addEventListener(
         "submit",
         enviarFormulario
     );
 
+
+    /* LIMPAR */
 
     formulario.addEventListener(
         "reset",
@@ -318,7 +464,7 @@ function prepararFormulario() {
 
 
 /* =========================================================
-   MÁSCARA CPF
+   9. MÁSCARA CPF
 ========================================================= */
 
 function aplicarMascaraCPF(evento) {
@@ -346,11 +492,12 @@ function aplicarMascaraCPF(evento) {
 
 
     evento.target.value = valor;
+
 }
 
 
 /* =========================================================
-   MÁSCARA TELEFONE
+   10. MÁSCARA TELEFONE
 ========================================================= */
 
 function aplicarMascaraTelefone(evento) {
@@ -385,11 +532,12 @@ function aplicarMascaraTelefone(evento) {
 
 
     evento.target.value = valor;
+
 }
 
 
 /* =========================================================
-   MÁSCARA CEP
+   11. MÁSCARA CEP
 ========================================================= */
 
 function aplicarMascaraCEP(evento) {
@@ -407,11 +555,12 @@ function aplicarMascaraCEP(evento) {
 
 
     evento.target.value = valor;
+
 }
 
 
 /* =========================================================
-   VALIDAÇÃO
+   12. VALIDAÇÃO
 ========================================================= */
 
 function validarCampo(campo) {
@@ -426,6 +575,10 @@ function validarCampo(campo) {
             "campo-valido"
         );
 
+        campo.removeAttribute(
+            "aria-invalid"
+        );
+
     } else {
 
         campo.classList.remove(
@@ -436,21 +589,28 @@ function validarCampo(campo) {
             "campo-invalido"
         );
 
+        campo.setAttribute(
+            "aria-invalid",
+            "true"
+        );
+
     }
 
 }
 
 
 /* =========================================================
-   ENVIO
+   13. ENVIO DO FORMULÁRIO
 ========================================================= */
 
 function enviarFormulario(evento) {
 
     evento.preventDefault();
 
+
     const formulario =
         evento.currentTarget;
+
 
     const campos =
         formulario.querySelectorAll(
@@ -466,8 +626,11 @@ function enviarFormulario(evento) {
         const primeiroInvalido =
             formulario.querySelector(":invalid");
 
+
         if (primeiroInvalido) {
+
             primeiroInvalido.focus();
+
         }
 
 
@@ -476,7 +639,9 @@ function enviarFormulario(evento) {
             "erro"
         );
 
+
         return;
+
     }
 
 
@@ -493,6 +658,7 @@ function enviarFormulario(evento) {
 
     abrirModal();
 
+
     formulario.reset();
 
 
@@ -503,13 +669,17 @@ function enviarFormulario(evento) {
             "campo-invalido"
         );
 
+        campo.removeAttribute(
+            "aria-invalid"
+        );
+
     });
 
 }
 
 
 /* =========================================================
-   LOCALSTORAGE
+   14. LOCALSTORAGE
 ========================================================= */
 
 function salvarPreferencias() {
@@ -527,8 +697,13 @@ function salvarPreferencias() {
 
 
     const preferencias = {
-        contribuicao: contribuicao.value,
-        mensagem: mensagem.value
+
+        contribuicao:
+            contribuicao.value,
+
+        mensagem:
+            mensagem.value
+
     };
 
 
@@ -536,6 +711,7 @@ function salvarPreferencias() {
         "preferenciasONG",
         JSON.stringify(preferencias)
     );
+
 }
 
 
@@ -562,14 +738,18 @@ function restaurarPreferencias(
 
 
         if (contribuicao) {
+
             contribuicao.value =
                 preferencias.contribuicao || "";
+
         }
 
 
         if (mensagem) {
+
             mensagem.value =
                 preferencias.mensagem || "";
+
         }
 
     } catch (erro) {
@@ -590,7 +770,7 @@ function restaurarPreferencias(
 
 
 /* =========================================================
-   MODAL
+   15. ABRIR MODAL
 ========================================================= */
 
 function abrirModal() {
@@ -606,17 +786,45 @@ function abrirModal() {
     }
 
 
-    modal.classList.add("ativo");
+    /* GUARDA ONDE O FOCO ESTAVA */
+
+    elementoFocadoAntesDoModal =
+        document.activeElement;
+
+
+    modal.classList.add(
+        "ativo"
+    );
+
 
     modal.setAttribute(
         "aria-hidden",
         "false"
     );
 
+
     document.body.style.overflow =
         "hidden";
+
+
+    const botaoFechar =
+        modal.querySelector(
+            ".modal-fechar"
+        );
+
+
+    if (botaoFechar) {
+
+        botaoFechar.focus();
+
+    }
+
 }
 
+
+/* =========================================================
+   16. FECHAR MODAL
+========================================================= */
 
 function fecharModal() {
 
@@ -626,28 +834,118 @@ function fecharModal() {
         );
 
 
-    if (!modal) {
+    if (
+        !modal ||
+        !modal.classList.contains("ativo")
+    ) {
         return;
     }
 
 
-    modal.classList.remove("ativo");
+    modal.classList.remove(
+        "ativo"
+    );
+
 
     modal.setAttribute(
         "aria-hidden",
         "true"
     );
 
-    document.body.style.overflow = "";
+
+    document.body.style.overflow =
+        "";
+
+
+    /* DEVOLVE O FOCO */
+
+    if (
+        elementoFocadoAntesDoModal &&
+        typeof elementoFocadoAntesDoModal.focus
+            === "function"
+    ) {
+
+        elementoFocadoAntesDoModal.focus();
+
+    }
+
+
+    elementoFocadoAntesDoModal =
+        null;
+
 }
 
 
 /* =========================================================
-   TOAST
+   17. PRENDER FOCO DENTRO DO MODAL
 ========================================================= */
 
-let temporizadorToast;
+function prenderFocoNoModal(
+    evento,
+    modal
+) {
 
+    const elementosFocaveis =
+        modal.querySelectorAll(`
+            button:not([disabled]),
+            a[href],
+            input:not([disabled]),
+            select:not([disabled]),
+            textarea:not([disabled]),
+            [tabindex]:not([tabindex="-1"])
+        `);
+
+
+    if (
+        elementosFocaveis.length === 0
+    ) {
+        return;
+    }
+
+
+    const primeiroElemento =
+        elementosFocaveis[0];
+
+
+    const ultimoElemento =
+        elementosFocaveis[
+            elementosFocaveis.length - 1
+        ];
+
+
+    /* SHIFT + TAB */
+
+    if (
+        evento.shiftKey &&
+        document.activeElement === primeiroElemento
+    ) {
+
+        evento.preventDefault();
+
+        ultimoElemento.focus();
+
+    }
+
+
+    /* TAB */
+
+    else if (
+        !evento.shiftKey &&
+        document.activeElement === ultimoElemento
+    ) {
+
+        evento.preventDefault();
+
+        primeiroElemento.focus();
+
+    }
+
+}
+
+
+/* =========================================================
+   18. TOAST
+========================================================= */
 
 function mostrarToast(
     mensagem,
@@ -663,9 +961,13 @@ function mostrarToast(
     }
 
 
-    clearTimeout(temporizadorToast);
+    clearTimeout(
+        temporizadorToast
+    );
 
-    toast.textContent = mensagem;
+
+    toast.textContent =
+        mensagem;
 
 
     toast.classList.remove(
@@ -681,7 +983,9 @@ function mostrarToast(
     );
 
 
-    toast.classList.add("ativo");
+    toast.classList.add(
+        "ativo"
+    );
 
 
     temporizadorToast =

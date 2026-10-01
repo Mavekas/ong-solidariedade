@@ -26,6 +26,22 @@
 
 <body>
 
+    <!-- ========================================
+         LINK DE ACESSIBILIDADE
+    ========================================= -->
+
+    <a
+        class="skip-link"
+        href="#app"
+    >
+        Pular para o conteúdo
+    </a>
+
+
+    <!-- ========================================
+         CABEÇALHO
+    ========================================= -->
+
     <header class="cabecalho">
 
         <div class="container cabecalho-container">
@@ -38,6 +54,9 @@
                 ONG Solidariedade
             </a>
 
+
+            <!-- MENU MOBILE -->
+
             <button
                 class="menu-toggle"
                 type="button"
@@ -48,6 +67,9 @@
                 ☰
             </button>
 
+
+            <!-- NAVEGAÇÃO PRINCIPAL -->
+
             <nav
                 id="menu-principal"
                 class="menu"
@@ -57,18 +79,28 @@
                 <ul class="menu-lista">
 
                     <li>
-                        <a href="#inicio">
+                        <a
+                            href="#inicio"
+                            data-rota="inicio"
+                        >
                             Início
                         </a>
                     </li>
 
+
                     <li class="dropdown">
 
-                        <a href="#projetos">
+                        <a
+                            href="#projetos"
+                            data-rota="projetos"
+                        >
                             Projetos
                         </a>
 
-                        <ul class="submenu">
+                        <ul
+                            class="submenu"
+                            aria-label="Submenu de projetos"
+                        >
 
                             <li>
                                 <a href="#projetos">
@@ -86,8 +118,12 @@
 
                     </li>
 
+
                     <li>
-                        <a href="#cadastro">
+                        <a
+                            href="#cadastro"
+                            data-rota="cadastro"
+                        >
                             Participe
                         </a>
                     </li>
@@ -101,26 +137,53 @@
     </header>
 
 
+    <!-- ========================================
+         CONTEÚDO DINÂMICO DA SPA
+    ========================================= -->
+
     <main
         id="app"
         tabindex="-1"
+        aria-live="polite"
+        aria-atomic="false"
     >
+        <!--
+            O conteúdo das rotas será inserido
+            dinamicamente pelo JavaScript.
+
+            Rotas:
+            #inicio
+            #projetos
+            #cadastro
+        -->
     </main>
 
+
+    <!-- ========================================
+         AVISO SEM JAVASCRIPT
+    ========================================= -->
 
     <noscript>
 
         <div class="container">
 
-            <div class="alerta alerta-aviso">
+            <div
+                class="alerta alerta-aviso"
+                role="alert"
+            >
                 Para utilizar esta aplicação,
-                é necessário habilitar o JavaScript.
+                é necessário habilitar o JavaScript
+                no navegador.
             </div>
 
         </div>
 
     </noscript>
 
+
+    <!-- ========================================
+         RODAPÉ
+    ========================================= -->
 
     <footer class="rodape">
 
