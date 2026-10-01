@@ -1,312 +1,247 @@
 /* =========================================================
+   IMAGENS
+   O uso de new URL(..., import.meta.url) permite que o Vite
+   processe e copie corretamente as imagens para o build.
+========================================================= */
+
+const imagemVoluntarios = new URL(
+    "../imagens/voluntarios.png",
+    import.meta.url
+).href;
+
+const imagemDoacao = new URL(
+    "../imagens/doacao.png",
+    import.meta.url
+).href;
+
+const imagemPrincipal = new URL(
+    "../imagens/principal.png",
+    import.meta.url
+).href;
+
+
+/* =========================================================
    DADOS DOS PROJETOS
 ========================================================= */
 
 const projetos = [
     {
         titulo: "Voluntários em ação",
-
         descricao:
             "Os voluntários ajudam na organização das campanhas, separação de alimentos e realização de diversas atividades sociais.",
-
-        imagem: "imagens/voluntarios.png",
-
-        alt:
-            "Voluntários organizando alimentos para uma ação social",
-
-        status: "Projeto ativo",
-
-        classeBadge: "badge-sucesso",
-
-        classeBotao: "btn-secundario"
+        imagem: imagemVoluntarios,
+        alt: "Voluntários organizando alimentos para uma ação social",
+        badge: "Projeto ativo",
+        badgeClasse: "badge-sucesso",
+        botaoClasse: "btn-secundario"
     },
-
     {
         titulo: "Campanha de doação",
-
         descricao:
             "Realizamos campanhas para arrecadar alimentos e outros recursos importantes para famílias e comunidades.",
-
-        imagem: "imagens/doacao.png",
-
-        alt:
-            "Campanha de arrecadação de alimentos e produtos para doação",
-
-        status: "Arrecadação aberta",
-
-        classeBadge: "badge-alerta",
-
-        classeBotao: "btn-destaque"
+        imagem: imagemDoacao,
+        alt: "Campanha de arrecadação de alimentos e produtos para doação",
+        badge: "Arrecadação aberta",
+        badgeClasse: "badge-aviso",
+        botaoClasse: "btn-destaque"
     },
-
     {
         titulo: "Ações comunitárias",
-
         descricao:
             "Desenvolvemos atividades que aproximam voluntários, doadores e comunidades, incentivando a solidariedade.",
-
-        imagem: "imagens/principal.png",
-
-        alt:
-            "Grupo de voluntários participando de uma ação comunitária",
-
-        status: "Em andamento",
-
-        classeBadge: "badge-info",
-
-        classeBotao: ""
+        imagem: imagemPrincipal,
+        alt: "Grupo de voluntários participando de uma ação comunitária",
+        badge: "Em andamento",
+        badgeClasse: "badge-info",
+        botaoClasse: "btn-primario"
     }
 ];
 
 
 /* =========================================================
-   TEMPLATE - PÁGINA INICIAL
+   TEMPLATE - INÍCIO
 ========================================================= */
 
 export function templateInicio() {
-
     return `
-
-        <!-- HERO -->
-
         <section class="hero">
-
             <div class="container hero-conteudo">
+                <div class="grid">
 
-                <div class="hero-texto">
+                    <div class="col-7 hero-texto">
+                        <span class="badge badge-info">
+                            Solidariedade que transforma
+                        </span>
 
-                    <span class="badge badge-sucesso">
-                        Transformando vidas
-                    </span>
+                        <h1>Juntos por um futuro melhor</h1>
 
-                    <h1>
-                        Juntos por um futuro melhor
-                    </h1>
+                        <p>
+                            A ONG Solidariedade conecta pessoas dispostas a
+                            ajudar com projetos que fazem a diferença na vida
+                            de famílias e comunidades.
+                        </p>
 
-                    <p>
-                        Transformando vidas por meio da solidariedade,
-                        do voluntariado e de ações que fazem a diferença.
-                    </p>
+                        <div class="acoes">
+                            <a href="#projetos"
+                               class="btn btn-primario">
+                                Conhecer projetos
+                            </a>
 
-                    <div class="card-acoes">
+                            <a href="#cadastro"
+                               class="btn btn-secundario">
+                                Quero participar
+                            </a>
+                        </div>
+                    </div>
 
-                        <a
-                            href="#projetos"
-                            class="btn btn-destaque"
+                    <div class="col-5 hero-imagem">
+                        <img
+                            src="${imagemPrincipal}"
+                            alt="Pessoas participando de uma ação solidária"
+                            loading="eager"
                         >
-                            Conheça nossos projetos
-                        </a>
-
-                        <a
-                            href="#cadastro"
-                            class="btn btn-secundario"
-                        >
-                            Seja voluntário
-                        </a>
-
                     </div>
 
                 </div>
-
-
-                <div class="hero-imagem">
-
-                    <img
-                        src="imagens/principal.png"
-                        alt="Voluntários unidos observando uma comunidade"
-                    >
-
-                </div>
-
             </div>
-
         </section>
 
 
-        <!-- SOBRE A ONG -->
-
-        <section class="secao">
-
+        <section class="secao" aria-labelledby="titulo-sobre">
             <div class="container">
 
                 <div class="grid">
 
-                    <div class="col-8">
+                    <div class="col-6">
+                        <span class="badge badge-info">
+                            Quem somos
+                        </span>
 
-                        <h2>
-                            Sobre a ONG
+                        <h2 id="titulo-sobre">
+                            Sobre a ONG Solidariedade
                         </h2>
 
                         <p>
-                            Nossa ONG trabalha para ajudar pessoas e
-                            comunidades por meio de projetos sociais,
-                            campanhas de arrecadação e atividades
-                            realizadas por voluntários.
+                            A ONG Solidariedade foi criada com o objetivo de
+                            incentivar ações sociais, promover o voluntariado
+                            e apoiar comunidades por meio de campanhas e
+                            projetos solidários.
                         </p>
 
                         <p>
-                            Nosso objetivo é incentivar a solidariedade
-                            e criar oportunidades para que mais pessoas
-                            possam contribuir com ações que fazem a
-                            diferença.
+                            Nosso trabalho depende da participação de pessoas
+                            que acreditam que pequenas atitudes podem gerar
+                            grandes transformações.
                         </p>
-
                     </div>
 
-
-                    <aside class="col-4">
-
-                        <div class="alerta alerta-info">
-
-                            <strong>
-                                Nossa missão
-                            </strong>
-
-                            <p>
-                                Aproximar pessoas dispostas a ajudar
-                                de comunidades e projetos que precisam
-                                de apoio.
-                            </p>
-
-                        </div>
-
-                    </aside>
+                    <div class="col-6">
+                        <img
+                            src="${imagemVoluntarios}"
+                            alt="Voluntários trabalhando juntos em uma ação social"
+                            loading="lazy"
+                            class="imagem-responsiva"
+                        >
+                    </div>
 
                 </div>
 
             </div>
-
         </section>
 
 
-        <!-- COMO AJUDAR -->
-
-        <section class="secao">
+        <section class="secao secao-alternativa"
+                 aria-labelledby="titulo-ajudar">
 
             <div class="container">
 
-                <div class="secao-titulo">
+                <header class="secao-cabecalho">
+                    <span class="badge badge-sucesso">
+                        Faça parte
+                    </span>
 
-                    <h2>
-                        Como ajudar
+                    <h2 id="titulo-ajudar">
+                        Como você pode ajudar
                     </h2>
 
                     <p>
-                        Escolha uma forma de participar das nossas ações.
+                        Existem diversas formas de contribuir com as nossas
+                        iniciativas.
                     </p>
+                </header>
 
-                </div>
 
+                <div class="grid cards-grid">
 
-                <div class="cards-grid">
-
-                    <article class="card">
-
+                    <article class="card col-4">
                         <div class="card-conteudo">
-
                             <span class="badge badge-sucesso">
                                 Voluntariado
                             </span>
 
-                            <h3>
-                                Seja voluntário
-                            </h3>
+                            <h3>Doe seu tempo</h3>
 
                             <p>
-                                Participe das nossas atividades e ajude
-                                diretamente no desenvolvimento dos
-                                projetos sociais.
+                                Participe das atividades da ONG e ajude na
+                                organização de campanhas, eventos e ações
+                                comunitárias.
                             </p>
 
-                            <div class="card-acoes">
-
-                                <a
-                                    href="#cadastro"
-                                    class="btn btn-secundario"
-                                >
-                                    Quero ser voluntário
-                                </a>
-
-                            </div>
-
+                            <a href="#cadastro"
+                               class="btn btn-secundario">
+                                Ser voluntário
+                            </a>
                         </div>
-
                     </article>
 
 
-                    <article class="card">
-
+                    <article class="card col-4">
                         <div class="card-conteudo">
-
-                            <span class="badge badge-alerta">
+                            <span class="badge badge-aviso">
                                 Doações
                             </span>
 
-                            <h3>
-                                Faça uma doação
-                            </h3>
+                            <h3>Contribua com recursos</h3>
 
                             <p>
-                                Sua contribuição ajuda a manter nossos
-                                projetos e permite que novas ações sejam
-                                realizadas.
+                                Alimentos, roupas e outros recursos podem
+                                ajudar famílias e comunidades atendidas pelos
+                                nossos projetos.
                             </p>
 
-                            <div class="card-acoes">
-
-                                <a
-                                    href="#projetos"
-                                    class="btn btn-destaque"
-                                >
-                                    Conheça as campanhas
-                                </a>
-
-                            </div>
-
+                            <a href="#projetos"
+                               class="btn btn-destaque">
+                                Ver campanhas
+                            </a>
                         </div>
-
                     </article>
 
 
-                    <article class="card">
-
+                    <article class="card col-4">
                         <div class="card-conteudo">
-
                             <span class="badge badge-info">
-                                Projetos sociais
+                                Divulgação
                             </span>
 
-                            <h3>
-                                Conheça nossas ações
-                            </h3>
+                            <h3>Compartilhe nossas ações</h3>
 
                             <p>
-                                Veja os projetos desenvolvidos pela ONG
-                                e acompanhe como voluntários e doadores
-                                ajudam nossa comunidade.
+                                Divulgue os projetos da ONG e ajude mais
+                                pessoas a conhecerem e participarem das nossas
+                                iniciativas.
                             </p>
 
-                            <div class="card-acoes">
-
-                                <a
-                                    href="#projetos"
-                                    class="btn"
-                                >
-                                    Ver projetos
-                                </a>
-
-                            </div>
-
+                            <a href="#projetos"
+                               class="btn btn-primario">
+                                Conhecer projetos
+                            </a>
                         </div>
-
                     </article>
 
                 </div>
 
             </div>
-
         </section>
-
     `;
 }
 
@@ -315,57 +250,43 @@ export function templateInicio() {
    GERAÇÃO DINÂMICA DOS CARDS
 ========================================================= */
 
-function gerarCardsProjetos() {
-
+export function gerarCardsProjetos() {
     return projetos
-
-        .map((projeto) => {
-
-            return `
-
-                <article class="card">
+        .map(
+            (projeto) => `
+                <article class="card projeto-card col-4">
 
                     <img
-                        class="card-imagem"
                         src="${projeto.imagem}"
                         alt="${projeto.alt}"
+                        class="card-imagem"
+                        loading="lazy"
                     >
 
                     <div class="card-conteudo">
 
-                        <span
-                            class="badge ${projeto.classeBadge}"
-                        >
-                            ${projeto.status}
+                        <span class="badge ${projeto.badgeClasse}">
+                            ${projeto.badge}
                         </span>
 
-                        <h3>
-                            ${projeto.titulo}
-                        </h3>
+                        <h3>${projeto.titulo}</h3>
 
                         <p>
                             ${projeto.descricao}
                         </p>
 
-                        <div class="card-acoes">
-
-                            <a
-                                href="#cadastro"
-                                class="btn ${projeto.classeBotao}"
-                            >
-                                Participar
-                            </a>
-
-                        </div>
+                        <a
+                            href="#cadastro"
+                            class="btn ${projeto.botaoClasse}"
+                        >
+                            Participar
+                        </a>
 
                     </div>
 
                 </article>
-
-            `;
-
-        })
-
+            `
+        )
         .join("");
 }
 
@@ -375,73 +296,55 @@ function gerarCardsProjetos() {
 ========================================================= */
 
 export function templateProjetos() {
-
     return `
-
-        <!-- APRESENTAÇÃO -->
-
-        <section class="hero">
-
+        <section class="hero hero-interno">
             <div class="container">
 
-                <div class="hero-texto">
+                <span class="badge badge-info">
+                    Nossas ações
+                </span>
 
-                    <span class="badge badge-info">
-                        Nossas ações
-                    </span>
+                <h1>Conheça nossos projetos</h1>
 
-                    <h1>
-                        Conheça nossos projetos
-                    </h1>
-
-                    <p>
-                        Nossos projetos buscam ajudar pessoas e
-                        comunidades por meio de ações solidárias,
-                        campanhas de doação e trabalho voluntário.
-                    </p>
-
-                </div>
+                <p>
+                    Nossos projetos buscam ajudar pessoas e comunidades por
+                    meio de ações solidárias, campanhas de doação e trabalho
+                    voluntário.
+                </p>
 
             </div>
-
         </section>
 
 
-        <!-- CARDS GERADOS PELO JAVASCRIPT -->
-
-        <section class="secao">
+        <section class="secao"
+                 aria-labelledby="titulo-projetos">
 
             <div class="container">
 
-                <div class="secao-titulo">
+                <header class="secao-cabecalho">
 
-                    <h2>
+                    <h2 id="titulo-projetos">
                         Projetos em destaque
                     </h2>
 
                     <p>
-                        Conheça algumas das iniciativas desenvolvidas
-                        pela ONG Solidariedade.
+                        Conheça algumas das iniciativas desenvolvidas pela
+                        ONG Solidariedade.
                     </p>
 
-                </div>
+                </header>
 
 
-                <div
-                    id="lista-projetos"
-                    class="cards-grid"
-                >
+                <div class="grid cards-grid">
                     ${gerarCardsProjetos()}
                 </div>
 
             </div>
-
         </section>
 
 
-        <!-- DOAÇÕES -->
-
-        <section class="secao">
+        <section class="secao secao-alternativa"
+                 aria-labelledby="titulo-doacao">
 
             <div class="container">
 
@@ -449,67 +352,49 @@ export function templateProjetos() {
 
                     <div class="col-6">
 
-                        <h2>
-                            O que pode ser doado?
+                        <span class="badge badge-aviso">
+                            Campanhas
+                        </span>
+
+                        <h2 id="titulo-doacao">
+                            Sua contribuição faz diferença
                         </h2>
 
                         <p>
-                            As campanhas recebem diferentes tipos
-                            de materiais conforme as necessidades
-                            das comunidades atendidas.
+                            As doações recebidas ajudam a manter os projetos
+                            sociais e permitem ampliar o atendimento às
+                            comunidades.
                         </p>
 
-                        <div class="alerta alerta-info">
+                        <p>
+                            Você pode contribuir participando das campanhas,
+                            tornando-se voluntário ou ajudando na divulgação
+                            das nossas ações.
+                        </p>
 
-                            <strong>
-                                Principais itens
-                            </strong>
-
-                            <p>
-                                Alimentos não perecíveis, produtos de
-                                higiene pessoal, roupas em bom estado
-                                e materiais escolares.
-                            </p>
-
-                        </div>
+                        <a href="#cadastro"
+                           class="btn btn-destaque">
+                            Quero ajudar
+                        </a>
 
                     </div>
 
 
                     <div class="col-6">
 
-                        <h2>
-                            Como fazer uma doação
-                        </h2>
-
-                        <p>
-                            Entre em contato com nossa equipe para
-                            receber informações sobre os pontos de
-                            coleta e campanhas disponíveis.
-                        </p>
-
-                        <div class="alerta alerta-sucesso">
-
-                            <p>
-                                <strong>E-mail:</strong>
-                                contato@ongsolidariedade.org
-                            </p>
-
-                            <p>
-                                <strong>Telefone:</strong>
-                                (83) 99999-9999
-                            </p>
-
-                        </div>
+                        <img
+                            src="${imagemDoacao}"
+                            alt="Itens arrecadados durante uma campanha de doação"
+                            loading="lazy"
+                            class="imagem-responsiva"
+                        >
 
                     </div>
 
                 </div>
 
             </div>
-
         </section>
-
     `;
 }
 
@@ -519,42 +404,52 @@ export function templateProjetos() {
 ========================================================= */
 
 export function templateCadastro() {
-
     return `
-
-        <!-- APRESENTAÇÃO -->
-
-        <section class="hero">
-
+        <section class="hero hero-interno">
             <div class="container">
 
-                <div class="hero-texto">
+                <span class="badge badge-sucesso">
+                    Participe
+                </span>
 
-                    <span class="badge badge-sucesso">
-                        Faça parte
-                    </span>
+                <h1>Faça parte da ONG Solidariedade</h1>
 
-                    <h1>
-                        Cadastro de voluntário
-                    </h1>
-
-                    <p>
-                        Preencha o formulário abaixo e faça parte
-                        das ações da ONG Solidariedade.
-                    </p>
-
-                </div>
+                <p>
+                    Preencha o formulário para participar das nossas ações
+                    como voluntário, doador ou apoiador.
+                </p>
 
             </div>
-
         </section>
 
 
-        <!-- FORMULÁRIO -->
-
-        <section class="secao">
+        <section class="secao"
+                 aria-labelledby="titulo-cadastro">
 
             <div class="container">
+
+                <header class="secao-cabecalho">
+
+                    <h2 id="titulo-cadastro">
+                        Cadastro
+                    </h2>
+
+                    <p>
+                        Os campos marcados com * são obrigatórios.
+                    </p>
+
+                </header>
+
+
+                <div class="alerta alerta-info"
+                     role="status">
+
+                    <strong>Acessibilidade:</strong>
+                    todos os campos possuem identificação e podem ser
+                    preenchidos utilizando apenas o teclado.
+
+                </div>
+
 
                 <form
                     id="form-cadastro"
@@ -562,22 +457,9 @@ export function templateCadastro() {
                     novalidate
                 >
 
-                    <h2>
-                        Informações pessoais
-                    </h2>
+                    <div class="grid">
 
-                    <p>
-                        Os campos marcados como obrigatórios devem
-                        ser preenchidos corretamente.
-                    </p>
-
-
-                    <div class="form-grid">
-
-                        <!-- NOME -->
-
-                        <div class="campo campo-completo">
-
+                        <div class="campo col-6">
                             <label for="nome">
                                 Nome completo *
                             </label>
@@ -586,19 +468,15 @@ export function templateCadastro() {
                                 type="text"
                                 id="nome"
                                 name="nome"
-                                placeholder="Digite seu nome completo"
+                                required
                                 minlength="3"
                                 autocomplete="name"
-                                required
+                                placeholder="Digite seu nome"
                             >
-
                         </div>
 
 
-                        <!-- E-MAIL -->
-
-                        <div class="campo">
-
+                        <div class="campo col-6">
                             <label for="email">
                                 E-mail *
                             </label>
@@ -607,18 +485,14 @@ export function templateCadastro() {
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder="exemplo@email.com"
-                                autocomplete="email"
                                 required
+                                autocomplete="email"
+                                placeholder="exemplo@email.com"
                             >
-
                         </div>
 
 
-                        <!-- NASCIMENTO -->
-
-                        <div class="campo">
-
+                        <div class="campo col-4">
                             <label for="nascimento">
                                 Data de nascimento *
                             </label>
@@ -627,17 +501,13 @@ export function templateCadastro() {
                                 type="date"
                                 id="nascimento"
                                 name="nascimento"
-                                autocomplete="bday"
                                 required
+                                autocomplete="bday"
                             >
-
                         </div>
 
 
-                        <!-- CPF -->
-
-                        <div class="campo">
-
+                        <div class="campo col-4">
                             <label for="cpf">
                                 CPF *
                             </label>
@@ -646,19 +516,16 @@ export function templateCadastro() {
                                 type="text"
                                 id="cpf"
                                 name="cpf"
-                                placeholder="000.000.000-00"
-                                maxlength="14"
-                                inputmode="numeric"
                                 required
+                                inputmode="numeric"
+                                maxlength="14"
+                                autocomplete="off"
+                                placeholder="000.000.000-00"
                             >
-
                         </div>
 
 
-                        <!-- TELEFONE -->
-
-                        <div class="campo">
-
+                        <div class="campo col-4">
                             <label for="telefone">
                                 Telefone *
                             </label>
@@ -667,19 +534,16 @@ export function templateCadastro() {
                                 type="tel"
                                 id="telefone"
                                 name="telefone"
-                                placeholder="(00) 00000-0000"
+                                required
+                                inputmode="tel"
                                 maxlength="15"
                                 autocomplete="tel"
-                                required
+                                placeholder="(00) 00000-0000"
                             >
-
                         </div>
 
 
-                        <!-- CEP -->
-
-                        <div class="campo">
-
+                        <div class="campo col-3">
                             <label for="cep">
                                 CEP *
                             </label>
@@ -688,20 +552,16 @@ export function templateCadastro() {
                                 type="text"
                                 id="cep"
                                 name="cep"
-                                placeholder="00000-000"
-                                maxlength="9"
-                                inputmode="numeric"
-                                autocomplete="postal-code"
                                 required
+                                inputmode="numeric"
+                                maxlength="9"
+                                autocomplete="postal-code"
+                                placeholder="00000-000"
                             >
-
                         </div>
 
 
-                        <!-- ESTADO -->
-
-                        <div class="campo">
-
+                        <div class="campo col-3">
                             <label for="estado">
                                 Estado *
                             </label>
@@ -710,39 +570,15 @@ export function templateCadastro() {
                                 type="text"
                                 id="estado"
                                 name="estado"
-                                placeholder="PB"
+                                required
                                 maxlength="2"
                                 autocomplete="address-level1"
-                                required
+                                placeholder="UF"
                             >
-
                         </div>
 
 
-                        <!-- ENDEREÇO -->
-
-                        <div class="campo campo-completo">
-
-                            <label for="endereco">
-                                Endereço *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="endereco"
-                                name="endereco"
-                                placeholder="Rua, avenida e número"
-                                autocomplete="street-address"
-                                required
-                            >
-
-                        </div>
-
-
-                        <!-- CIDADE -->
-
-                        <div class="campo campo-completo">
-
+                        <div class="campo col-6">
                             <label for="cidade">
                                 Cidade *
                             </label>
@@ -751,20 +587,33 @@ export function templateCadastro() {
                                 type="text"
                                 id="cidade"
                                 name="cidade"
-                                placeholder="Digite sua cidade"
-                                autocomplete="address-level2"
                                 required
+                                autocomplete="address-level2"
+                                placeholder="Digite sua cidade"
                             >
-
                         </div>
 
 
-                        <!-- CONTRIBUIÇÃO -->
+                        <div class="campo col-12">
+                            <label for="endereco">
+                                Endereço *
+                            </label>
 
-                        <div class="campo campo-completo">
+                            <input
+                                type="text"
+                                id="endereco"
+                                name="endereco"
+                                required
+                                autocomplete="street-address"
+                                placeholder="Rua, número e bairro"
+                            >
+                        </div>
+
+
+                        <div class="campo col-12">
 
                             <label for="contribuicao">
-                                Como você deseja contribuir? *
+                                Como deseja contribuir? *
                             </label>
 
                             <select
@@ -777,20 +626,20 @@ export function templateCadastro() {
                                     Selecione uma opção
                                 </option>
 
-                                <option value="voluntariado">
+                                <option value="voluntario">
                                     Trabalho voluntário
                                 </option>
 
-                                <option value="doacao">
-                                    Doação
-                                </option>
-
-                                <option value="eventos">
-                                    Apoio em eventos
+                                <option value="doador">
+                                    Fazer doações
                                 </option>
 
                                 <option value="divulgacao">
-                                    Divulgação das campanhas
+                                    Ajudar na divulgação
+                                </option>
+
+                                <option value="outro">
+                                    Outra forma de contribuição
                                 </option>
 
                             </select>
@@ -798,84 +647,53 @@ export function templateCadastro() {
                         </div>
 
 
-                        <!-- MENSAGEM -->
-
-                        <div class="campo campo-completo">
+                        <div class="campo col-12">
 
                             <label for="mensagem">
-                                Conte um pouco sobre como deseja ajudar *
+                                Mensagem
                             </label>
 
                             <textarea
                                 id="mensagem"
                                 name="mensagem"
-                                placeholder="Escreva aqui como você gostaria de colaborar..."
-                                minlength="10"
-                                required
+                                rows="5"
+                                maxlength="500"
+                                placeholder="Conte um pouco sobre como você gostaria de participar"
                             ></textarea>
 
                         </div>
 
+                    </div>
 
-                        <!-- BOTÕES -->
 
-                        <div class="form-acoes">
+                    <div class="acoes-formulario">
 
-                            <button
-                                type="reset"
-                                class="btn btn-secundario"
-                            >
-                                Limpar
-                            </button>
+                        <button
+                            type="reset"
+                            class="btn btn-secundario"
+                        >
+                            Limpar
+                        </button>
 
-                            <button
-                                type="submit"
-                                class="btn btn-destaque"
-                            >
-                                Enviar cadastro
-                            </button>
-
-                        </div>
+                        <button
+                            type="submit"
+                            class="btn btn-primario"
+                        >
+                            Enviar cadastro
+                        </button>
 
                     </div>
 
                 </form>
 
             </div>
-
         </section>
 
 
-        <!-- AVISO -->
-
-        <section class="secao">
-
-            <div class="container">
-
-                <div class="alerta alerta-info">
-
-                    <strong>
-                        Seus dados estão protegidos
-                    </strong>
-
-                    <p>
-                        As informações fornecidas são utilizadas
-                        somente para simulação da aplicação.
-                        Dados pessoais não são armazenados no
-                        localStorage.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- MODAL -->
+        <!-- MODAL DE CONFIRMAÇÃO -->
 
         <div
-            id="modal-sucesso"
+            id="modal-confirmacao"
             class="modal"
             role="dialog"
             aria-modal="true"
@@ -888,32 +706,23 @@ export function templateCadastro() {
                 <button
                     type="button"
                     class="modal-fechar"
-                    aria-label="Fechar mensagem"
+                    aria-label="Fechar janela de confirmação"
                 >
                     ×
                 </button>
 
-
-                <span class="badge badge-sucesso">
-                    Cadastro recebido
-                </span>
-
-
                 <h2 id="modal-titulo">
-                    Obrigado por participar!
+                    Cadastro enviado!
                 </h2>
 
-
                 <p>
-                    Seu cadastro foi preenchido com sucesso.
-                    Nossa equipe entrará em contato quando houver
-                    novas ações disponíveis.
+                    Obrigado pelo interesse em participar da
+                    ONG Solidariedade.
                 </p>
-
 
                 <button
                     type="button"
-                    class="btn btn-secundario modal-ok"
+                    class="btn btn-primario modal-ok"
                 >
                     Entendi
                 </button>
@@ -923,7 +732,7 @@ export function templateCadastro() {
         </div>
 
 
-        <!-- TOAST -->
+        <!-- TOAST DE FEEDBACK -->
 
         <div
             id="toast"
@@ -931,8 +740,6 @@ export function templateCadastro() {
             role="status"
             aria-live="polite"
             aria-atomic="true"
-        >
-        </div>
-
+        ></div>
     `;
 }
